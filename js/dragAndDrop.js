@@ -1,4 +1,4 @@
-var playlistURI;
+var playlistURI = "";
 window.onload = function(){
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
@@ -38,3 +38,11 @@ window.onload = function(){
         playlistURI = drop.uri;
     }, false);
 };
+
+function getPlaylistURI() {
+    if (playlistURI === "") {
+        console.log("jodu");
+        playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
+    }
+    return playlistURI;
+}
