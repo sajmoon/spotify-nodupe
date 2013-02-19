@@ -73,7 +73,7 @@ function handleGetPlaylistTracks() {
     listTracks(tracksFromPlaylist(getPlaylistURI()));
     listDupes(findDupesInPlaylist(getPlaylistURI()));
 }
-function findDupesInPlaylist() {
+function getDupes() {
     
     var playlistURI = getPlaylistURI();
     var tracks = tracksFromPlaylist(playlistURI);
@@ -102,9 +102,7 @@ function removeFromPlaylist(trackURI) {
     var playlist = models.Playlist.fromURI(getPlaylistURI());
 
     playlist.remove(trackURI);
-
-    findDupesInPlaylist();
-
+    handleGetPlaylistTracks();
 }
 
 function removeAllDupes() {
