@@ -69,7 +69,11 @@ window.onload = function() {
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
 function findDupesInPlaylist() {
-    var playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
+    var playlistURI = getPlaylistURI();
+    if (playlistURI === "") {
+        console.log("jodu");
+        playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
+    }
     var tracks = tracksFromPlaylist(playlistURI);
     var trackList = document.getElementById("dupelist");
 
