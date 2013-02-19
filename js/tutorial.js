@@ -69,28 +69,30 @@ window.onload = function() {
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
 function findDupesInPlaylist() {
-    var tracks = tracksFromPlaylist();
+    var playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
+    var tracks = tracksFromPlaylist(playlistURI);
     var trackList = document.getElementById("dupelist");
+
     for (var i = 0; i < tracks.length - 1; i++) {
         var track = tracks[i];
         for (var j = i + 1; j < tracks.length; j++) {
             if (tracks[j].data.uri == track.data.uri) {
-                trackList.innerHTML = trackList.innerHTML + "<li>" + track.data.name + "</li>";
+                 $('#dupelist').append ( "<li>" + track.data.name + "</li>");
             }
         }
     }
-    listTracks();
+    listTracks(playlistURI);
 }
 
-function listTracks() {
-    var tracks = tracksFromPlaylist();
+function listTracks(playlistURI) {
+    var tracks = tracksFromPlaylist(playlistURI);
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
         var trackList = document.getElementById("trackslist");
         trackList.innerHTML = trackList.innerHTML + "<li>" + track.data.name + "</li>";
     }
 }
-function tracksFromPlaylist() {
+function tracksFromPlaylist(playlistURI) {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
     var playlist = models.Playlist.fromURI(playlistURI);
