@@ -92,11 +92,7 @@ function removeFromPlaylist(trackURI) {
     var models = sp.require("$api/models");
     var playlist = models.Playlist.fromURI(playlistURI);
 
-
-    var tracks = tracksFromPlaylist(playlistURI);
-
     playlist.remove(trackURI);
-
 }
 
 function listTracks(playlistURI) {
@@ -107,6 +103,7 @@ function listTracks(playlistURI) {
         $("#trackslist").append( "<li>" + track.data.name + "</li>");
     }
 }
+
 function tracksFromPlaylist(playlistURI) {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
