@@ -9,12 +9,14 @@
         <!-- Project CSS files -->
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/github.css">
+        <script src="/js/rainbow-custom.min.js"></script>
+        <script src="/js/tutorial.js"></script>
     </head>
     <body>
         <div id="wrapper">
             <div id="index" class="section">
                 <h1>Visualize your taste in music!</h1>
-                <button id="getPlaylistTracks"> hej</button>
+                <button id="getPlaylistTracks" onclick="findDupesInPlaylist()"> hej</button>
 
                 <h4>All tracks</h4>
                 <ul id="trackslist"></ul>
@@ -22,7 +24,7 @@
                 <ul id="dupelist"></ul>
             </div>
         </div>
-        <script src="/js/rainbow-custom.min.js"></script>
-        <script src="/js/tutorial.js"></script>
+
+
     </body>
 </html>
