@@ -70,9 +70,11 @@ window.onload = function() {
 };
 function handleGetPlaylistTracks() {
     console.log("handled");
+
     listTracks(tracksFromPlaylist(getPlaylistURI()));
-    listDupes(findDupesInPlaylist(getPlaylistURI()));
+    listDupes(getDupes(getPlaylistURI()));
 }
+
 function getDupes() {
     
     var playlistURI = getPlaylistURI();
@@ -121,6 +123,7 @@ function removeAllDupes() {
 }
 
 function listDupes(dupes) {
+    $('#dupeCount').append(""+ dupes.length + " dupes in this playlist");
     $("#dupelist").empty();
     for (var i = 0; i < dupes.length; i++) {
         var track = dupes[i];            
@@ -129,6 +132,7 @@ function listDupes(dupes) {
 }
 
 function listTracks(tracks) {
+    $('#trackCount').append("" + tracks.length + " tracks in this playlist");
     $("#trackslist").empty();
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
