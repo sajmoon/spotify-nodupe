@@ -60,15 +60,16 @@ window.onload = function() {
             Rainbow.color();
         };
         xhr.send(null);
-    }
 
-    
+
+    }
 
     //document.getElementById('getPlaylistTracks').attr('onclick','findDupesInPlaylist()');
 
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
 function findDupesInPlaylist() {
+    console.log("derp duuupes");
     var playlistURI = getPlaylistURI();
     var tracks = tracksFromPlaylist(playlistURI);
     $('#dupelist').empty();
@@ -86,13 +87,14 @@ function findDupesInPlaylist() {
 
 function removeFromPlaylist(trackURI) {
     
-    var playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
-
     var sp = getSpotifyApi();
     var models = sp.require("$api/models");
-    var playlist = models.Playlist.fromURI(playlistURI);
+    var playlist = models.Playlist.fromURI(getPlaylistURI());
 
     playlist.remove(trackURI);
+
+    findDupesInPlaylist();
+
 }
 
 function listTracks(playlistURI) {
