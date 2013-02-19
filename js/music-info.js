@@ -14,18 +14,22 @@ function getTags(track) {
 	var models = sp.require("$api/models");
 
 	var query = "http://musicbrainz.org/ws/2/artist/?query=coldplay"
-	$.ajax(query).done( function(data) {
-		console.log(data);
-		var doc = $.parseXML( data );
-		$xml = $( doc);
-		var artist = $xml.find("artist-list").text();
+	$.ajax({ 
+		url: query,
+		method: 'GET',
+		success: function(data) {
+
+			
+			var tags = $(data).find('artist').first().find('tag-list').children().find('name');
+			var liID = "#" +track.data.uri.split(":")[2];
+			
+			$(liID)[0].innerHTML = tags[0].firstChild.textContent;
+			
+			console.log(tags[0].firstChild);
 		//.each(function() {
-			console.log(artist);	
-		//});
+			//console.log(tags);
+		}
+		});
 		
-
-	})
-
-
     return "inga taggar";
 }
