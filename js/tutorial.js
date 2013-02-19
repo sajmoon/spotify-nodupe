@@ -77,11 +77,26 @@ function findDupesInPlaylist() {
         var track = tracks[i];
         for (var j = i + 1; j < tracks.length; j++) {
             if (tracks[j].data.uri == track.data.uri) {
-                 $('#dupelist').append ( "<li>" + track.data.name + "<button>Remove</button></li>");
+                 $('#dupelist').append ( "<li>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></li>");
             }
         }
     }
     listTracks(playlistURI);
+}
+
+function removeFromPlaylist(trackURI) {
+    
+    var playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
+
+    var sp = getSpotifyApi();
+    var models = sp.require("$api/models");
+    var playlist = models.Playlist.fromURI(playlistURI);
+
+
+    var tracks = tracksFromPlaylist(playlistURI);
+
+    playlist.remove(trackURI);
+
 }
 
 function listTracks(playlistURI) {
