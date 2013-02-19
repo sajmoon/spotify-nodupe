@@ -69,7 +69,7 @@ window.onload = function() {
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
 function findDupesInPlaylist() {
-    console.log("derp duuupes");
+    
     var playlistURI = getPlaylistURI();
     var tracks = tracksFromPlaylist(playlistURI);
     $('#dupelist').empty();
@@ -95,6 +95,10 @@ function removeFromPlaylist(trackURI) {
 
     findDupesInPlaylist();
 
+}
+
+function removeAllDupes() {
+    return 0;
 }
 
 function listTracks(playlistURI) {
