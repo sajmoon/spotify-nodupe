@@ -33,8 +33,7 @@ window.onload = function(){
         var drop = models.Playlist.fromURI(e.dataTransfer.getData('text'));
         this.classList.remove('over');
         var success_message = document.createElement('p');
-        success_message.innerHTML = 'Playlist successfully dropped: ' + drop.uri;
-        this.appendChild(success_message);
+        this.innerHTML = 'Playlist successfully dropped: ' + drop.name;
         playlistURI = drop.uri;
     }, false);
 };
