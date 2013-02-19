@@ -75,13 +75,13 @@ function findDupesInPlaylist() {
         playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
     }
     var tracks = tracksFromPlaylist(playlistURI);
-    var trackList = document.getElementById("dupelist");
+    $('#dupelist').empty();
 
     for (var i = 0; i < tracks.length - 1; i++) {
         var track = tracks[i];
         for (var j = i + 1; j < tracks.length; j++) {
             if (tracks[j].data.uri == track.data.uri) {
-                 $('#dupelist').append ( "<li>" + track.data.name + "</li>");
+                 $('#dupelist').append ( "<li>" + track.data.name + "<button>Remove</button></li>");
             }
         }
     }
@@ -90,10 +90,10 @@ function findDupesInPlaylist() {
 
 function listTracks(playlistURI) {
     var tracks = tracksFromPlaylist(playlistURI);
+    $("#trackslist").empty();
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
-        var trackList = document.getElementById("trackslist");
-        trackList.innerHTML = trackList.innerHTML + "<li>" + track.data.name + "</li>";
+        $("#trackslist").append( "<li>" + track.data.name + "</li>");
     }
 }
 function tracksFromPlaylist(playlistURI) {
