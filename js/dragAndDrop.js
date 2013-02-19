@@ -1,3 +1,4 @@
+var playlistURI;
 window.onload = function(){
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
@@ -34,5 +35,6 @@ window.onload = function(){
         var success_message = document.createElement('p');
         success_message.innerHTML = 'Playlist successfully dropped: ' + drop.uri;
         this.appendChild(success_message);
+        playlistURI = drop.uri;
     }, false);
 };

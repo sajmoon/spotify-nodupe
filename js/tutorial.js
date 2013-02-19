@@ -93,7 +93,7 @@ function listTracks() {
 function tracksFromPlaylist() {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
-    var playlist = models.Playlist.fromURI("spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62");
+    var playlist = models.Playlist.fromURI(playlistURI);
     var tracks = playlist.tracks;
         
     return tracks;
