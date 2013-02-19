@@ -70,10 +70,6 @@ window.onload = function() {
 };
 function findDupesInPlaylist() {
     var playlistURI = getPlaylistURI();
-    if (playlistURI === "") {
-        console.log("jodu");
-        playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
-    }
     var tracks = tracksFromPlaylist(playlistURI);
     $('#dupelist').empty();
 
