@@ -73,12 +73,16 @@ function findDupesInPlaylist() {
     var playlistURI = getPlaylistURI();
     var tracks = tracksFromPlaylist(playlistURI);
     $('#dupelist').empty();
-
+    var dupes = [];
     for (var i = 0; i < tracks.length - 1; i++) {
         var track = tracks[i];
         for (var j = i + 1; j < tracks.length; j++) {
             if (tracks[j].data.uri == track.data.uri) {
-                 $('#dupelist').append ( "<li>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></li>");
+                console.log($.contains(track.data.uri,dupes));
+                if ($.inArray(track.data.uri, dupes)==-1) {
+                    $('#dupelist').append ( "<li>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></li>");
+                    dupes.push(track.data.uri);
+                }
             }
         }
     }
