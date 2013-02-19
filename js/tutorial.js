@@ -62,5 +62,27 @@ window.onload = function() {
         xhr.send(null);
     }
 
+    function tracksFromPlaylist() {
+        var playlist = models.Playlist.fromURI("spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62");
+        console.log(playlist.tracks);
+        var tracks = playlist.tracks;
+        
+        console.log(tracks.length);
+        
+
+        for (var i = 0; i < tracks.length; i++) {
+
+            var track = tracks[i];
+            console.log(track);
+            var trackList = document.getElementById("trackslist");
+            trackList.innerHTML = trackList.innerHTML + "<li>" + track.data.name + "</li>";
+        }
+        
+    }
+
+    document.getElementById('getPlaylistTracks').click( 
+        tracksFromPlaylist()
+    );
+
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
