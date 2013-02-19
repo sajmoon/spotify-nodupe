@@ -143,7 +143,7 @@ function listTracks(tracks) {
     $("#trackslist").empty();
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
-        $("#trackslist").append( "<li>" + track.data.name + " <span id='"+ track.data.uri.split(":")[2] +"'>- taggar</span></li>");
+        $("#trackslist").append( "<li>" + track.data.name + " <div class='tags' id='"+ track.data.uri.split(":")[2] +"'></div></li>");
         getTags(track);
     }
 }
