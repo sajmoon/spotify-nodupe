@@ -72,18 +72,19 @@ function findDupesInPlaylist() {
     var playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
     var tracks = tracksFromPlaylist(playlistURI);
     var trackList = document.getElementById("dupelist");
+
     for (var i = 0; i < tracks.length - 1; i++) {
         var track = tracks[i];
         for (var j = i + 1; j < tracks.length; j++) {
             if (tracks[j].data.uri == track.data.uri) {
-                trackList.innerHTML = trackList.innerHTML + "<li>" + track.data.name + "</li>";
+                 $('#dupelist').append ( "<li>" + track.data.name + "</li>");
             }
         }
     }
     listTracks(playlistURI);
 }
 
-function listTracks() {
+function listTracks(playlistURI) {
     var tracks = tracksFromPlaylist(playlistURI);
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
