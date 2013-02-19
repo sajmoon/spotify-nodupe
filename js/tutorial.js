@@ -131,14 +131,22 @@ function listDupes(dupes) {
     }
 }
 
+function getPlaylists() {
+    var sp = getSpotifyApi();
+    var models = sp.require("$api/models");
+
+    console.log(models.Player);
+}
+
 function listTracks(tracks) {
     $('#trackCount').append("" + tracks.length + " tracks in this playlist");
     $("#trackslist").empty();
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
-        $("#trackslist").append( "<li>" + track.data.name + "</li>");
+        $("#trackslist").append( "<li>" + track.data.name + " - " + getTags(track) + "</li>");
     }
 }
+
 
 function tracksFromPlaylist(playlistURI) {
     var sp = getSpotifyApi();
@@ -148,3 +156,4 @@ function tracksFromPlaylist(playlistURI) {
         
     return tracks;
 }
+
