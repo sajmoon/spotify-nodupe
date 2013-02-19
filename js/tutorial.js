@@ -64,11 +64,13 @@ window.onload = function() {
 
     function findDupesInPlaylist() {
         var tracks = tracksFromPlaylist();
+        var trackList = document.getElementById("dupelist");
 
         for (var i = 0; i < tracks.length - 1; i++) {
+            var track = tracks[i];
             for (var j = i + 1; j < tracks.length; j++) {
-                if (tracks[j].data.uri == tracks[i].data.uri) {
-                    console.log("dupe!" + tracks[j].data.name);
+                if (tracks[j].data.uri == track.data.uri) {
+                    trackList.innerHTML = trackList.innerHTML + "<li>" + track.data.name + "</li>";
                 }
             }
         }
