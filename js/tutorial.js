@@ -68,25 +68,31 @@ window.onload = function() {
 
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
+function handleGetPlaylistTracks() {
+    console.log("handled");
+    listTracks(tracksFromPlaylist(getPlaylistURI()));
+    listDupes(findDupesInPlaylist(getPlaylistURI()));
+}
 function findDupesInPlaylist() {
     
     var playlistURI = getPlaylistURI();
     var tracks = tracksFromPlaylist(playlistURI);
     $('#dupelist').empty();
     var dupes = [];
+    var dupeTracks = [];
     for (var i = 0; i < tracks.length - 1; i++) {
         var track = tracks[i];
         for (var j = i + 1; j < tracks.length; j++) {
             if (tracks[j].data.uri == track.data.uri) {
                 console.log($.contains(track.data.uri,dupes));
                 if ($.inArray(track.data.uri, dupes)==-1) {
-                    $('#dupelist').append ( "<li>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></li>");
                     dupes.push(track.data.uri);
+                    dupeTracks.push(track);
                 }
             }
         }
     }
-    listTracks(playlistURI);
+    return dupeTracks;
 }
 
 function removeFromPlaylist(trackURI) {
@@ -105,8 +111,15 @@ function removeAllDupes() {
     return 0;
 }
 
-function listTracks(playlistURI) {
-    var tracks = tracksFromPlaylist(playlistURI);
+function listDupes(dupes) {
+    $("#dupelist").empty();
+    for (var i = 0; i < dupes.length; i++) {
+        var track = dupes[i];            
+        $('#dupelist').append ( "<li>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></li>");
+    }
+}
+
+function listTracks(tracks) {
     $("#trackslist").empty();
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
