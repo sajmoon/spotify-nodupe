@@ -60,17 +60,14 @@ window.onload = function() {
             Rainbow.color();
         };
         xhr.send(null);
-
-
     }
 
     //document.getElementById('getPlaylistTracks').attr('onclick','findDupesInPlaylist()');
 
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
-function handleGetPlaylistTracks() {
-    console.log("handled");
 
+function handleGetPlaylistTracks() {
     listTracks(tracksFromPlaylist(getPlaylistURI()));
     listDupes(getDupes(getPlaylistURI()));
 }
@@ -123,11 +120,12 @@ function removeAllDupes() {
 }
 
 function listDupes(dupes) {
+    $('#dupeCount').empty();
     $('#dupeCount').append(""+ dupes.length + " dupes in this playlist");
     $("#dupelist").empty();
     for (var i = 0; i < dupes.length; i++) {
         var track = dupes[i];            
-        $('#dupelist').append ( "<li>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></li>");
+        $('#dupelist').append ( "<div class='track'>" + track.data.name + "<button onClick=removeFromPlaylist('" + track.uri + "')>Remove</button></div>");
     }
 }
 
@@ -139,11 +137,12 @@ function getPlaylists() {
 }
 
 function listTracks(tracks) {
+    $('#trackCount').empty();
     $('#trackCount').append("" + tracks.length + " tracks in this playlist");
     $("#trackslist").empty();
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
-        $("#trackslist").append( "<li>" + track.data.name + " <div class='tags' id='"+ track.data.uri.split(":")[2] +"'></div></li>");
+        $("#trackslist").append( "<div class='track'>" + track.data.name + " <ul class='tags' id='"+ track.data.uri.split(":")[2] +"'></ul></div>");
         getTags(track);
     }
 }

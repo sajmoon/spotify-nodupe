@@ -4,10 +4,7 @@ function getInfo() {
 
 	tracksFromPlaylist(getPlaylistAPI());
 
-
-
 }
-
 
 function getTags(track) {
 	var sp = getSpotifyApi();
@@ -29,7 +26,7 @@ function getTags(track) {
 
 			for (var i = 0; i < tags.length && i < 4; i++) {
 					
-				output = "<div class='tag'>" + tags[i].firstChild.textContent + "</div>";
+				output = "<li class='tag'>" + tags[i].firstChild.textContent + "</li>";
 				console.log($(liID));
 				$(liID).append(output);
 			}
@@ -39,6 +36,4 @@ function getTags(track) {
 			//console.log(tags);
 		}
 		});
-		
-    return "inga taggar";
 }

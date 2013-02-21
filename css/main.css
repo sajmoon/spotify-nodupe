@@ -32,11 +32,10 @@ h1 {font-size:2em;}
 #index a:hover {color:#83be20;}
 
 .tag {
-	padding: 2px;
+	display: inline;
 	background-color: red;
 }
 
 .tags { 
 	display: inline;
-
 }
