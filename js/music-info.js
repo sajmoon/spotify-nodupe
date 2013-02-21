@@ -1,11 +1,3 @@
-function getInfo() {
-	var sp = getSpotifyApi();
-	var models = sp.require("$api/models");
-
-	tracksFromPlaylist(getPlaylistAPI());
-
-}
-
 function getTags(track) {
 	getFromMB(track, displayTags);
 }

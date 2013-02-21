@@ -61,22 +61,20 @@ window.onload = function() {
         };
         xhr.send(null);
     }
-
     //document.getElementById('getPlaylistTracks').attr('onclick','findDupesInPlaylist()');
 
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
 
 function handleGetPlaylistTracks() {
-    listTracks(tracksFromPlaylist(getPlaylistURI()));
-    listDupes(getDupes(getPlaylistURI()));
+    tracksFromPlaylist(getPlaylistURI(), listTracks);
+    getDupes(getPlaylistURI(), listDupes);
 }
 
-function getDupes() {
+function getDupes(playlistURI, callback) {
     
-    var playlistURI = getPlaylistURI();
     var tracks = tracksFromPlaylist(playlistURI);
-    $('#dupelist').empty();
+
     var dupes = [];
     var dupeTracks = [];
     for (var i = 0; i < tracks.length - 1; i++) {
@@ -91,7 +89,8 @@ function getDupes() {
             }
         }
     }
-    return dupeTracks;
+    console.log(dupeTracks.length);
+    callback(dupeTracks);
 }
 
 
@@ -120,6 +119,7 @@ function removeAllDupes() {
 }
 
 function listDupes(dupes) {
+    console.log(dupes.length);
     $('#dupeCount').empty();
     $('#dupeCount').append(""+ dupes.length + " dupes in this playlist");
     $("#dupelist").empty();
@@ -147,13 +147,16 @@ function listTracks(tracks) {
     }
 }
 
-
-function tracksFromPlaylist(playlistURI) {
+function tracksFromPlaylist(playlistURI, callback) {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
     var playlist = models.Playlist.fromURI(playlistURI);
     var tracks = playlist.tracks;
         
-    return tracks;
+    if (callback==undefined)
+        return tracks;
+    else
+        callback(tracks);
+    
 }
 
