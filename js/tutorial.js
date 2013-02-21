@@ -73,24 +73,24 @@ function handleGetPlaylistTracks() {
 
 function getDupes(playlistURI, callback) {
     
-    var tracks = tracksFromPlaylist(playlistURI);
-
-    var dupes = [];
-    var dupeTracks = [];
-    for (var i = 0; i < tracks.length - 1; i++) {
-        var track = tracks[i];
-        for (var j = i + 1; j < tracks.length; j++) {
-            if (tracks[j].data.uri == track.data.uri) {
-                console.log($.contains(track.data.uri,dupes));
-                if ($.inArray(track.data.uri, dupes)==-1) {
-                    dupes.push(track.data.uri);
-                    dupeTracks.push(track);
+    tracksFromPlaylist(playlistURI, function(tracks) {
+        var dupes = [];
+        var dupeTracks = [];
+        for (var i = 0; i < tracks.length - 1; i++) {
+            var track = tracks[i];
+            for (var j = i + 1; j < tracks.length; j++) {
+                if (tracks[j].data.uri == track.data.uri) {
+                    console.log($.contains(track.data.uri,dupes));
+                    if ($.inArray(track.data.uri, dupes)==-1) {
+                        dupes.push(track.data.uri);
+                        dupeTracks.push(track);
+                    }
                 }
             }
         }
-    }
-    console.log(dupeTracks.length);
-    callback(dupeTracks);
+        console.log(dupeTracks.length);
+        callback(dupeTracks);    
+    });
 }
 
 
