@@ -6,10 +6,8 @@ function getFromMB(track, callback) {
 	var sp = getSpotifyApi();
 	var models = sp.require("$api/models");
 
-
 	var query = "http://musicbrainz.org/ws/2/artist/?query=" + track.data.artists[0].name;
 
-	console.log(query);
 	$.ajax({ 
 		url: query,
 		method: 'GET',

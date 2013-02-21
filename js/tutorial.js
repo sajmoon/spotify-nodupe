@@ -105,21 +105,20 @@ function removeFromPlaylist(trackURI) {
 }
 
 function removeAllDupes() {
-
-    var tracks = tracksFromPlaylist(getPlaylistURI());
-    for (var i = 0; i < tracks.length - 1; i++) {
-        var track = tracks[i];
-        for (var j = i +1; j < tracks.length; j++) {
-            if (tracks[j].data.uri == track.data.uri) {
-                console.log("Found a dupe. Removing it!");
-                removeFromPlaylist(track.uri);
+    tracksFromPlaylist(getPlaylistURI(), function(tracks) {
+        for (var i = 0; i < tracks.length - 1; i++) {
+            var track = tracks[i];
+            for (var j = i +1; j < tracks.length; j++) {
+                if (tracks[j].data.uri == track.data.uri) {
+                    console.log("Found a dupe. Removing it!");
+                    removeFromPlaylist(track.uri);
+                }
             }
         }
-    }
+    });
 }
 
 function listDupes(dupes) {
-    console.log(dupes.length);
     $('#dupeCount').empty();
     $('#dupeCount').append(""+ dupes.length + " dupes in this playlist");
     $("#dupelist").empty();
