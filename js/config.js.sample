@@ -1,0 +1,6 @@
+var configs = {
+	ironCache: {
+		oauth: "sampleOauthToken",
+		projectID: "sampleProjectID"
+	}
+}
