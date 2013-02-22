@@ -41,7 +41,7 @@ window.onload = function(){
 function getPlaylistURI() {
     if (playlistURI === "") {
         console.log("jodu");
-        playlistURI = "spotify:user:simstr:playlist:6dC1M384MSr9NIY9SrUI62";
+        playlistURI = "spotify:user:simstr:starred";
     }
     return playlistURI;
 }
