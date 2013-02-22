@@ -2,6 +2,19 @@ function getTags(track) {
 	getFromMB(track, displayTags);
 }
 
+function getTagsForManyTracks(tracks) {
+	var i = 0;
+
+	var interval = setInterval(function() {
+		console.log("getData for i " + i);
+		getFromMB(tracks[i], displayTags);
+		i++;
+		if ( i > tracks.length) {
+			clearInterval(interval);
+		}
+	}, 1000);
+}
+
 function getFromMB(track, callback) {
 	var sp = getSpotifyApi();
 	var models = sp.require("$api/models");
@@ -13,6 +26,9 @@ function getFromMB(track, callback) {
 		method: 'GET',
 		success: function(data) {
 			callback(track, data);
+		},
+		error: function(xhr, status, errorThrown) {
+			console.log("Error: " + status );
 		}
 
 	});
@@ -25,7 +41,6 @@ function displayTags(track, data) {
 	
 	for (var i = 0; i < tags.length && i < 4; i++) {
 		output = "<li class='tag'>" + tags[i].firstChild.textContent + "</li>";
-		console.log($(liID));
 		$(liID).append(output);
 	}
 	

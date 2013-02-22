@@ -68,6 +68,7 @@ window.onload = function() {
 
 function handleGetPlaylistTracks() {
     tracksFromPlaylist(getPlaylistURI(), listTracks);
+    tracksFromPlaylist(getPlaylistURI(), getTagsForManyTracks);
     getDupes(getPlaylistURI(), listDupes);
 }
 
@@ -142,7 +143,7 @@ function listTracks(tracks) {
     for (var i = 0; i < tracks.length; i++) {
         var track = tracks[i];            
         $("#trackslist").append( "<div class='track'>" + track.data.name + " <ul class='tags' id='"+ track.data.uri.split(":")[2] +"'></ul></div>");
-        getTags(track);
+        //getTags(track);
     }
 }
 
