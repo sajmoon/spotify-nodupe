@@ -48,7 +48,8 @@
 	    "http://amsterdam.last.fm",
 	    "http://ws.audioscrobbler.com/",
 	    "http://developer.echonest.com",
-	    "http://musicbrainz.org"
+	    "http://musicbrainz.org",
+	    "https://cache-aws-us-east-1.iron.io"
 	],
 	"SupportedLanguages": [
 		"en"
